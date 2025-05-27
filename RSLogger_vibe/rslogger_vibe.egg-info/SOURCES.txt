@@ -1,0 +1,8 @@
+README.md
+pyproject.toml
+rslogger_vibe.egg-info/PKG-INFO
+rslogger_vibe.egg-info/SOURCES.txt
+rslogger_vibe.egg-info/dependency_links.txt
+rslogger_vibe.egg-info/entry_points.txt
+rslogger_vibe.egg-info/requires.txt
+rslogger_vibe.egg-info/top_level.txt

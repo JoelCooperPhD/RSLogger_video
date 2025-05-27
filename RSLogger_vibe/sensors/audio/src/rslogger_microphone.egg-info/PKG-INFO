@@ -1,0 +1,60 @@
+Metadata-Version: 2.4
+Name: rslogger-microphone
+Version: 0.1.0
+Summary: Microphone logging application for audio data acquisition
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: sounddevice>=0.4.6
+Requires-Dist: soundfile>=0.12.1
+Requires-Dist: numpy>=1.24.0
+Requires-Dist: asyncio-mqtt>=0.16.2
+Requires-Dist: pytest>=8.3.5
+Requires-Dist: pytest-cov>=6.1.1
+Requires-Dist: pytest-asyncio>=0.26.0
+Requires-Dist: fastapi>=0.109.0
+Requires-Dist: uvicorn[standard]>=0.27.0
+Requires-Dist: websockets>=12.0
+Requires-Dist: aiofiles>=23.2.1
+Provides-Extra: test
+Requires-Dist: pytest>=7.4.0; extra == "test"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "test"
+Requires-Dist: pytest-cov>=4.1.0; extra == "test"
+Dynamic: license-file
+
+# RSLogger Audio
+
+A simple command-line audio recording application for macOS, Windows, and Linux.
+
+## Installation
+
+```bash
+pip install -e .
+```
+
+## Usage
+
+### Basic Recording
+```bash
+# Record until you press Ctrl+C
+python main.py
+
+# Record for 10 seconds
+python main.py -d 10
+
+# Record with custom filename
+python main.py my_recording.wav
+```
+
+### Show Audio Device Info
+```bash
+python main.py --info
+```
+
+### Options
+- `-d, --duration`: Recording duration in seconds
+- `-r, --samplerate`: Sample rate in Hz (default: 44100)
+- `--info`: Display default audio device information
+
+Recordings are saved in the `recordings/` directory by default.
+This is an audio module for the RSLogger system

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Recording</title>
+</head>
+<body>
+    <h1>WebSocket Recording Test</h1>
+    <button id="connect">Connect</button>
+    <button id="record" disabled>Start Recording</button>
+    <button id="stop" disabled>Stop Recording</button>
+    <div id="status">Disconnected</div>
+    <div id="messages" style="border: 1px solid #ccc; height: 300px; overflow-y: scroll; margin-top: 20px;"></div>
+
+    <script>
+        let ws = null;
+        let isRecording = false;
+        
+        const status = document.getElementById('status');
+        const messages = document.getElementById('messages');
+        const connectBtn = document.getElementById('connect');
+        const recordBtn = document.getElementById('record');
+        const stopBtn = document.getElementById('stop');
+        
+        function log(msg) {
+            const div = document.createElement('div');
+            div.textContent = `${new Date().toLocaleTimeString()}: ${msg}`;
+            messages.appendChild(div);
+            messages.scrollTop = messages.scrollHeight;
+        }
+        
+        connectBtn.onclick = () => {
+            if (ws) {
+                ws.close();
+            }
+            
+            ws = new WebSocket('ws://localhost:8000/ws');
+            
+            ws.onopen = () => {
+                log('Connected');
+                status.textContent = 'Connected';
+                recordBtn.disabled = false;
+                connectBtn.textContent = 'Disconnect';
+            };
+            
+            ws.onclose = () => {
+                log('Disconnected');
+                status.textContent = 'Disconnected';
+                recordBtn.disabled = true;
+                stopBtn.disabled = true;
+                connectBtn.textContent = 'Connect';
+            };
+            
+            ws.onerror = (e) => {
+                log(`Error: ${e}`);
+            };
+            
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                log(`Received: ${data.type}`);
+                
+                if (data.type === 'recording_started') {
+                    isRecording = true;
+                    recordBtn.disabled = true;
+                    stopBtn.disabled = false;
+                    status.textContent = 'Recording...';
+                } else if (data.type === 'recording_completed' || data.type === 'recording_error') {
+                    isRecording = false;
+                    recordBtn.disabled = false;
+                    stopBtn.disabled = true;
+                    status.textContent = 'Connected';
+                    if (data.type === 'recording_error') {
+                        log(`Error: ${data.error}`);
+                    }
+                }
+            };
+        };
+        
+        recordBtn.onclick = () => {
+            log('Sending start_recording');
+            ws.send(JSON.stringify({
+                type: 'start_recording',
+                duration: 5
+            }));
+        };
+        
+        stopBtn.onclick = () => {
+            log('Sending stop_recording');
+            ws.send(JSON.stringify({
+                type: 'stop_recording'
+            }));
+        };
+    </script>
+</body>
+</html>

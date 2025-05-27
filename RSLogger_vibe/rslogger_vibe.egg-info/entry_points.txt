@@ -1,0 +1,5 @@
+[console_scripts]
+rslogger-audio = rslogger_vibe.sensors.audio.main:main
+rslogger-ui = rslogger_vibe.ui.ws_ui_server:main
+rslogger-vibe = rslogger_vibe.main:main
+rslogger-video = rslogger_vibe.sensors.video.main:main

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSLogger Control Center</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="app-title">
+                    <span class="material-icons">hub</span>
+                    RSLogger Control Center
+                </h1>
+                <div class="connection-status" id="connectionStatus">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Disconnected</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="recorders-panel">
+                <div class="panel-header">
+                    <h2>Audio Recorders</h2>
+                    <button class="refresh-button" id="refreshRecorders">
+                        <span class="material-icons">refresh</span>
+                    </button>
+                </div>
+                <div class="recorders-grid" id="recordersGrid">
+                    <p class="no-recorders">No recorders connected</p>
+                </div>
+            </div>
+
+            <div class="control-panel">
+                <h2>Master Controls</h2>
+                <div class="master-controls">
+                    <button class="master-button" id="startAllButton">
+                        <span class="material-icons">play_arrow</span>
+                        Start All Recording
+                    </button>
+                    <button class="master-button stop" id="stopAllButton">
+                        <span class="material-icons">stop</span>
+                        Stop All Recording
+                    </button>
+                    <div class="duration-control">
+                        <label for="masterDuration">Duration (seconds):</label>
+                        <input type="number" id="masterDuration" min="1" max="3600" placeholder="Unlimited">
+                    </div>
+                </div>
+            </div>
+
+            <div class="recordings-panel">
+                <h2>Recordings</h2>
+                <div class="recordings-list" id="recordingsList">
+                    <p class="no-recordings">No recordings yet</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="notification" id="notification">
+        <span class="notification-text"></span>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

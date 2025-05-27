@@ -1,0 +1,51 @@
+[project]
+name = "rslogger-vibe"
+version = "1.0.0"
+description = "Unified RSLogger system for video, audio, and behavioral recording"
+authors = [
+    {name = "Joel Cooper", email = "your.email@example.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+keywords = ["data acquisition", "video recording", "audio recording", "research", "behavioral"]
+
+dependencies = [
+    "numpy>=1.24.0",
+    "websockets>=13.0",
+    "sounddevice>=0.4.6",
+    "soundfile>=0.12.1",
+    "opencv-python>=4.11.0",
+    "fastapi>=0.109.0",
+    "uvicorn[standard]>=0.27.0",
+    "aiofiles>=23.2.1",
+    "psutil>=5.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.5",
+    "pytest-cov>=6.1.1",
+    "pytest-asyncio>=0.26.0",
+]
+
+[project.scripts]
+rslogger-vibe = "rslogger_vibe.main:main"
+rslogger-audio = "rslogger_vibe.sensors.audio.main:main"
+rslogger-video = "rslogger_vibe.sensors.video.main:main"
+rslogger-ui = "rslogger_vibe.ui.ws_ui_server:main"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["rslogger_vibe*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"

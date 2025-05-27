@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-05-23T16:18:01.402948",
+  "duration": 30.0,
+  "device": null,
+  "samplerate": 44100,
+  "channels": 1,
+  "subtype": "FLOAT",
+  "filename": "recording_20250523_161801_default.wav"
+}

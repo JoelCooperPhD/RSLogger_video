@@ -1,0 +1,15 @@
+[Unit]
+Description=RSLogger Audio Web Server
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/RSLogger_audio
+Environment=PATH=/home/pi/RSLogger_audio/venv/bin
+ExecStart=/home/pi/RSLogger_audio/venv/bin/python main.py --web --port 8080
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

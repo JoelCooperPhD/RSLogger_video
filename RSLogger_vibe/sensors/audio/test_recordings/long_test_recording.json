@@ -1,0 +1,19 @@
+{
+  "timestamp": "2025-05-23T20:43:45.494013",
+  "duration_seconds": 5.0165625,
+  "total_frames": 80265,
+  "device": {
+    "id": 0,
+    "name": "MacBook Air Microphone",
+    "channels": 1,
+    "samplerate": 48000.0
+  },
+  "config": {
+    "samplerate": 16000,
+    "channels": 1,
+    "dtype": "int16",
+    "output_dir": "test_recordings",
+    "device": null
+  },
+  "audio_file": "long_test_recording.wav"
+}
